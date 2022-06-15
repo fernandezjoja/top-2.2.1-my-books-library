@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="script.js" defer></script>
+  <title>Library</title>
+</head>
+<body>
+  <div class="main-container">
+    <div class="main-container__header">
+      <h1 class="main-title">My Library</h1>
+      <div class="buttons-holder">
+        <div class="button button--add-book" id="btn-add">+ Book</div>
+        <div class="button button--add-book" id="btn-addSample">+ Example</div>
+      </div>
+    </div>
+    <div class="main-container__window">
+      <div class="books-grid">
+      </div>
+    </div>
+  </div>
+
+  <div id="newBookModal" class="modal">
+    <div class="modal-window">
+      <span class="modal__X">&times;</span>
+      <div class="form-book">
+        
+        <div class="form-book__item">
+          <label class="form-book__label" for="input-name">Name:&nbsp;</label>
+          <input class="form-book__input" id="input-name" type="text">
+        </div>
+      
+        <div class="form-book__item">
+          <label class="form-book__label" for="input-author">Author:&nbsp;</label>
+          <input class="form-book__input" id="input-author" type="text">
+        </div>
+      
+        <div class="form-book__item">
+          <label class="form-book__label" for="input-pages">Number of pages:&nbsp;</label>
+          <input class="form-book__input" id="input-pages" type="number" min="0">
+        </div>
+      
+        <div class="form-book__item--checkbox">
+          <label class="form-book__label--checkbox" for="input-read">Read?&nbsp;</label>
+          <input class="form-book--checkbox" id="input-read" type="checkbox">
+        </div>
+        
+        <div id="submit-new-book" class="button button--open form-book__submit">Add Book</button>
+      </div>
+    </div>
+  </div>
+
+  
+
+</body>
+</html>

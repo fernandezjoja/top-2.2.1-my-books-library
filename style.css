@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+
+* {
+  box-sizing: border-box;
+  font-family: "Roboto";
+}
+
+body {
+  margin: 0px;
+}
+
+.main-container {
+}
+
+.main-container__header {
+  height: 80px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  background-color: #40587C;
+  box-shadow: 0 3px 6px 0px gray;
+}
+
+.main-title {
+  margin: 0 0 0 30px;
+  color: white;
+  font-size: 250%;
+}
+
+.buttons-holder {
+  display: flex;
+}
+
+.button {
+  width: 90px;
+  background-color: white;
+  border: 2px solid gray;
+  text-justify: center;
+  text-align: center;
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.button--add-book {
+  width: 100px;
+  padding: 3px;
+  margin-right: 30px;
+  background-color: green;
+  border: 0;
+  color: white;
+}
+
+.main-container__window {
+
+}
+
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  padding: 20px;
+  gap: 20px;
+}
+
+.book {
+  background-color: lightgray;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.book__cover {
+  width: 200px;
+  height: 290px;
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  padding: 0 20px;
+  overflow: hidden;
+  border-radius: 3px;
+}
+
+.book__title {
+  margin-top: 50px;
+  color: white;
+  font-size: 1.3rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-align: center;
+  overflow: hidden;
+  white-space: pre-line;
+  text-overflow: ellipsis;
+}
+
+.book__buttons {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.read-actions {
+  margin-top: 10px;
+}
+.read-actions > checkbox {
+  
+
+}
+.read-actions > label {
+  margin: 0px;
+  font-size: 1.4rem;
+}
+
+.button--open {
+  width: 120px;
+  height: 40px;
+  background: linear-gradient(0deg, darkgreen, lightgreen);
+  color: white;
+  border: 0px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  padding-top: 5px;
+  margin-left: 10px;
+}
+
+.button--delete {
+  width: 70px;
+  height: 40px;
+  color: white;
+  background: linear-gradient(0deg, darkred, pink);
+  padding-top: 10px;
+  border: 0px;
+}
+
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-window {
+  background-color: white;
+  margin: 20% auto;
+  padding: 10px;
+  width: 400px;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 
+              0 7px 20px 0 rgba(0, 0, 0, 0.17);
+  animation-name: modalopen;
+  animation-duration: 1s;
+}
+
+.modal__X {
+  color: #ccc;
+  font-size: 30px;
+  margin-left: 8px;
+}
+.modal__X:hover, .modal__X:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.form-book {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.form-book__item {
+  margin: 5px 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-book__label {
+  font-weight: bold;
+  margin-bottom: 4px;
+  font-size: 1.1rem;
+}
+
+.form-book__input {
+  margin-bottom: 8px;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  background-color: #f4f4f4;
+  height: 30px;
+}
+.form-book__input:focus {
+  outline: none;
+}
+
+.form-book__item--checkbox {
+  margin-bottom: 10px;
+}
+
+.form-book__label--checkbox {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.form-book--checkbox {
+}
+
+.form-book__submit {
+  width: 50%;
+  margin: auto;
+}
+
+@keyframes modalopen {
+  from{opacity: 0}
+  to {opacity: 1}
+}
