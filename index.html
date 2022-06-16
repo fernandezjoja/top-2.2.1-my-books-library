@@ -48,12 +48,33 @@
           <input class="form-book--checkbox" id="input-read" type="checkbox">
         </div>
         
-        <div id="submit-new-book" class="button button--open form-book__submit">Add Book</button>
+        <div id="submit-new-book" class="button button--open form-book__submit">Add Book</div>
       </div>
     </div>
   </div>
 
-  
-
+  <div id="book-info-modal" class="modal">
+    <div class="modal-window">
+      <span class="modal__X">&times;</span>
+      <div class="book-info">
+        <div class="book-info__row">
+          <p class="book-info__key">Title:&nbsp;</p>
+          <p class="book-info__value" id="book-info__title"></p>
+        </div>
+        <div class="book-info__row">
+          <p class="book-info__key">Author:&nbsp;</p>
+          <p class="book-info__value" id="book-info__author"></p>
+        </div>
+        <div class="book-info__row">
+          <p class="book-info__key">Pages:&nbsp;</p>
+          <p class="book-info__value" id="book-info__pages"></p>
+        </div>
+        <div class="book-info__row">
+          <p class="book-info__key">Read:&nbsp;</p>
+          <p class="book-info__value" id="book-info__read"></p>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

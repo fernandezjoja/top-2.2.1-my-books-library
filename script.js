@@ -4,6 +4,22 @@ let numberOfBooks = 0;
 const btn_AddBook = document.querySelector("#btn-add");
 
 btn_AddBook.addEventListener("click", openNewBookModal);
+myLibrary.push(new Book("David Copperfield", "Charles Dickens", 300, true));
+myLibrary.push(new Book("The End Of The Beginning", "Avi", 140, true));
+myLibrary.push(new Book("Robinson Crusoe", "James Joyce", 210, false));
+refreshMyLibrary();
+
+const newBookModal = document.querySelector("#newBookModal");
+const newBookModal__X = document.querySelectorAll(".modal__X")[0];
+newBookModal__X.addEventListener("click", (e) => closeModal(e.target.parentNode.parentNode));
+const btnNewBookSubmit = document.querySelector('#submit-new-book');
+btnNewBookSubmit.addEventListener("click", submitNewBook);
+
+const bookInfoModal = document.querySelector("#book-info-modal");
+const bookInfoModal__X = document.querySelectorAll(".modal__X")[1];
+bookInfoModal__X.addEventListener("click", (e) => closeModal(e.target.parentNode.parentNode));
+
+window.addEventListener("click", (e) => closeModal(e.target));
 
 function Book(title, author, pages, isRead) {
   this.title = title;
@@ -14,13 +30,6 @@ function Book(title, author, pages, isRead) {
   this.coverBlue = Math.floor((161 - 70) * Math.random()) + 70;
   this.coverGreen = Math.floor((161 - 70) * Math.random()) + 70;
 }
-
-myLibrary.push(new Book("David Copperfield", "Charles Dickens", 300, true));
-myLibrary.push(new Book("The End Of The Beginning", "Avi", 140, true));
-myLibrary.push(new Book("Robinson Crusoe", "James Joyce", 210, false));
-refreshMyLibrary();
-
-// function: loops thru array and displays each book
 
 function refreshMyLibrary() {
   removeDOMBooks();
@@ -36,14 +45,17 @@ function removeDOMBooks() {
   }
 }
 
-//#region New Book's Modal ----------------------------------------------------
+//#region Modals Setup --------------------------------------------------------
 
-const newBookModal = document.querySelector("#newBookModal");
-const newBookModalX = document.querySelector('.modal__X');
-newBookModalX.addEventListener("click", closeNewBookModal);
-const btnNewBookSubmit = document.querySelector('#submit-new-book');
-btnNewBookSubmit.addEventListener("click", submitNewBook);
-window.addEventListener("click", outsideModalClick);
+function closeModal(modal) {
+  if (modal === newBookModal) {
+    clearNewBookForm();
+    newBookModal.style.display = "none";
+  }
+  else if (modal === bookInfoModal){
+    bookInfoModal.style.display = "none";
+  }
+}
 
 function openNewBookModal() {
   newBookModal.style.display = "block";
@@ -52,10 +64,6 @@ function openNewBookModal() {
 function closeNewBookModal() {
   clearNewBookForm();
   newBookModal.style.display = "none";
-}
-
-function outsideModalClick(e) {
-  if (e.target == newBookModal) closeNewBookModal();
 }
 
 function submitNewBook() {
@@ -100,7 +108,20 @@ function clearNewBookForm() {
   document.querySelector("#input-read").checked = false;
 }
 
-//#endregion New Book's Modal -------------------------------------------------
+function openBookInfoModal(e) {
+  let book = myLibrary[parseInt(e.target.parentNode.parentNode.getAttribute("data-id"))];
+  document.querySelector("#book-info__title").textContent = book.title;
+  document.querySelector("#book-info__author").textContent = book.author;
+  document.querySelector("#book-info__pages").textContent = book.pages;
+  document.querySelector("#book-info__read").textContent = book.isRead ? "Yes" : "No";
+  bookInfoModal.style.display = "block";
+}
+
+function closeBookInfoModal() {
+
+}
+
+//#endregion Modals Setup -----------------------------------------------------
 
 //#region DOM Book Creation ---------------------------------------------------
 
@@ -165,6 +186,7 @@ function createDOMBookButtons() {
   btn_open.classList.add("button");
   btn_open.classList.add("button--open");
   btn_open.textContent = "Open";
+  btn_open.addEventListener("click", openBookInfoModal);
   domBook_buttons.appendChild(btn_open);
   return domBook_buttons;
 }

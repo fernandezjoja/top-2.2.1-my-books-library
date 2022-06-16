@@ -66,7 +66,6 @@ body {
 }
 
 .book {
-  background-color: lightgray;
   height: 400px;
   display: flex;
   flex-direction: column;
@@ -119,22 +118,30 @@ body {
 .button--open {
   width: 120px;
   height: 40px;
-  background: linear-gradient(0deg, darkgreen, lightgreen);
-  color: white;
-  border: 0px;
+  background-color: white;
+  color: darkgreen;
+  border: 2px solid darkgreen;
   font-size: 1.4rem;
   font-weight: bold;
   padding-top: 5px;
   margin-left: 10px;
 }
+.button--open:hover {
+  background: linear-gradient(0deg, darkgreen, green);;
+  color: white;
+}
 
 .button--delete {
   width: 70px;
   height: 40px;
-  color: white;
-  background: linear-gradient(0deg, darkred, pink);
+  background: white;
+  color: darkred;
+  border: 2px solid darkred;
   padding-top: 10px;
-  border: 0px;
+}
+.button--delete:hover {
+  background: linear-gradient(0deg, darkred, red);
+  color: white;
 }
 
 
@@ -217,6 +224,15 @@ body {
 .form-book__submit {
   width: 50%;
   margin: auto;
+}
+
+.book-info__row {
+  display: flex;
+  padding-left: 30px;
+}
+
+.book-info__key {
+  font-weight: bold;
 }
 
 @keyframes modalopen {
