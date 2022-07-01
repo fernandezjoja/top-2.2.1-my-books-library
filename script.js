@@ -1,34 +1,35 @@
-let myLibrary = [];
-const booksGrid = document.querySelector(".books-grid");
-let numberOfBooks = 0;
-const btn_AddBook = document.querySelector("#btn-add");
+class Book {
+  #title;
+  #author;
+  #pages;
+  #isRead;
+  #coverRed;
+  #coverBlue;
+  #coverGreen;
 
-btn_AddBook.addEventListener("click", openNewBookModal);
-myLibrary.push(new Book("David Copperfield", "Charles Dickens", 300, true));
-myLibrary.push(new Book("The End Of The Beginning", "Avi", 140, true));
-myLibrary.push(new Book("Robinson Crusoe", "James Joyce", 210, false));
-refreshMyLibrary();
+  #createCoverColor = () => {
+    return Math.floor((161-70) * Math.random()) + 70;
+  }
 
-const newBookModal = document.querySelector("#newBookModal");
-const newBookModal__X = document.querySelectorAll(".modal__X")[0];
-newBookModal__X.addEventListener("click", (e) => closeModal(e.target.parentNode.parentNode));
-const btnNewBookSubmit = document.querySelector('#submit-new-book');
-btnNewBookSubmit.addEventListener("click", submitNewBook);
+  constructor(title, author, pages, isRead) {
+    this.#title = title;
+    this.#author = author;
+    this.#pages = pages;
+    this.#isRead = isRead;
+    this.#coverRed = this.#createCoverColor();
+    this.#coverBlue = this.#createCoverColor();
+    this.#coverGreen = this.#createCoverColor();
+  }
 
-const bookInfoModal = document.querySelector("#book-info-modal");
-const bookInfoModal__X = document.querySelectorAll(".modal__X")[1];
-bookInfoModal__X.addEventListener("click", (e) => closeModal(e.target.parentNode.parentNode));
+  get title() {return this.#title;}
 
-window.addEventListener("click", (e) => closeModal(e.target));
+  get author() {return this.#author;}
 
-function Book(title, author, pages, isRead) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.isRead = isRead;
-  this.coverRed = Math.floor((161 - 70) * Math.random()) + 70;
-  this.coverBlue = Math.floor((161 - 70) * Math.random()) + 70;
-  this.coverGreen = Math.floor((161 - 70) * Math.random()) + 70;
+  get pages() {return this.#pages;}
+
+  get isRead() {return this.#isRead;}
+
+  get coverColors() {return {r: this.#coverRed, g: this.#coverBlue, b: this.#coverGreen};}
 }
 
 function refreshMyLibrary() {
@@ -74,6 +75,7 @@ function submitNewBook() {
   const bookToAdd = new Book(title, author, pages, read);
   if (!validateNewBookInfo(bookToAdd)) return;
   addNewBookToLibrary(bookToAdd);
+  myLibrary.push(bookToAdd);
   closeNewBookModal();
 }
 
@@ -117,10 +119,6 @@ function openBookInfoModal(e) {
   bookInfoModal.style.display = "block";
 }
 
-function closeBookInfoModal() {
-
-}
-
 //#endregion Modals Setup -----------------------------------------------------
 
 //#region DOM Book Creation ---------------------------------------------------
@@ -148,7 +146,7 @@ function createDOMBook(book) {
 function createDOMBookCover(book) {
   const domBook_cover = document.createElement("div");
   domBook_cover.classList.add("book__cover");
-  domBook_cover.style["background-color"] = `rgb(${book.coverRed}, ${book.coverBlue}, ${book.coverGreen})`;
+  domBook_cover.style["background-color"] = `rgb(${book.coverColors.r}, ${book.coverColors.g}, ${book.coverColors.b})`;
   const domBook_title = document.createElement("p");
   domBook_title.classList.add("book__title");
   domBook_title.textContent = book.title;
@@ -193,7 +191,7 @@ function createDOMBookButtons() {
 
 //#endregion New Book's Modal functions ---------------------------------------
 
-//#region Add Sample Book -------
+//#region Add Sample Book -----------------------------------------------------
 document.querySelector("#btn-addSample").addEventListener("click", addSampleBook);
 let sampleIndex = 0;
 let sampleBooks = [];
@@ -224,3 +222,29 @@ function addSampleBook() {
   sampleIndex++;
   if (sampleIndex >= sampleBooks.length) sampleIndex = 0;
 }
+//#endregion Add Sample Book --------------------------------------------------
+
+//#region Page Instance -------------------------------------------------------
+let myLibrary = [];
+const booksGrid = document.querySelector(".books-grid");
+let numberOfBooks = 0;
+const btn_AddBook = document.querySelector("#btn-add");
+
+btn_AddBook.addEventListener("click", openNewBookModal);
+myLibrary.push(new Book("David Copperfield", "Charles Dickens", 300, true));
+myLibrary.push(new Book("The End Of The Beginning", "Avi", 140, true));
+myLibrary.push(new Book("Robinson Crusoe", "James Joyce", 210, false));
+refreshMyLibrary();
+
+const newBookModal = document.querySelector("#newBookModal");
+const newBookModal__X = document.querySelectorAll(".modal__X")[0];
+newBookModal__X.addEventListener("click", (e) => closeModal(e.target.parentNode.parentNode));
+const btnNewBookSubmit = document.querySelector('#submit-new-book');
+btnNewBookSubmit.addEventListener("click", submitNewBook);
+
+const bookInfoModal = document.querySelector("#book-info-modal");
+const bookInfoModal__X = document.querySelectorAll(".modal__X")[1];
+bookInfoModal__X.addEventListener("click", (e) => closeModal(e.target.parentNode.parentNode));
+
+window.addEventListener("click", (e) => closeModal(e.target));
+//#endregion Page Instance ----------------------------------------------------
